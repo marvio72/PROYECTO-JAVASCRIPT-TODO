@@ -1,10 +1,6 @@
-import {
-  saludar
-} from './js/componentes.js';
-// import './styles.css';
 import './sass/estilos.scss';
-// import img from './assets/dcd5e077cf9f54ebe52d4f7ebe8c3080.png';
+import { Todo } from './classes/todo.class.js';
 
-const nombre = 'Marco 48';
+const tarea = new Todo('Aprender JavaScript');
 
-saludar(nombre);
+console.log(tarea);
