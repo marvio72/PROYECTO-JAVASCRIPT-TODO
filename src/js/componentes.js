@@ -7,6 +7,7 @@ const txtInput      = document.querySelector('.new-todo');
 const btnBorrar     = document.querySelector('.clear-completed');
 const ulFiltros     = document.querySelector('.filters');
 const anchorFiltros = document.querySelectorAll('.filtro');
+const contadorTodo  = document.querySelector('.todo-count');
 
 export const crearTodoHtml = (todo) => {
 
@@ -28,6 +29,10 @@ export const crearTodoHtml = (todo) => {
   return div.firstElementChild;
 };
 
+export const pendientesTodo = (contador) => {
+  const cuenta = contadorTodo.innerHTML = `<strong>${contador}</strong>  pendientes(s)`;
+  return cuenta;
+};
 
 // Eventos
 txtInput.addEventListener('keyup', ( event ) =>{
@@ -39,6 +44,8 @@ txtInput.addEventListener('keyup', ( event ) =>{
     todoList.nuevoTodo(nuevoTodo);
 
     crearTodoHtml(nuevoTodo);
+
+    pendientesTodo(todoList.contadorPendientes());
 
     txtInput.value = '';
 
@@ -59,6 +66,7 @@ divTodoList.addEventListener('click', (event) => {
     divTodoList.removeChild( todoElemento );
   }
 
+  pendientesTodo(todoList.contadorPendientes());
   // console.log(todoList);
 
 });

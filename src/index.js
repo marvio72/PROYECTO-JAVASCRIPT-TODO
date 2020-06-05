@@ -1,6 +1,6 @@
 import './sass/estilos.scss';
 import {Todo, TodoList} from './classes';
-import { crearTodoHtml } from './js/componentes';
+import { crearTodoHtml, pendientesTodo } from './js/componentes';
 
 
 export const todoList = new TodoList();
@@ -12,5 +12,6 @@ todoList.todos.forEach(todo => crearTodoHtml(todo) );
 
 // newTodo.imprimirClase();
 
-
 console.log('todos', todoList.todos);
+
+pendientesTodo(todoList.contadorPendientes());

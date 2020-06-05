@@ -5,6 +5,7 @@ export class TodoList {
   constructor(){
     // this.todos = [];
     this.cargarLocalStorage();
+    console.log(this.contadorPendientes());
   }
 
   nuevoTodo( todos ) {
@@ -18,8 +19,9 @@ export class TodoList {
   }
 
   marcarCompletado ( id ){
+    let pendientes = 0;
     for( const todo of this.todos) {
-      // console.log(id, todo.id);
+      //  console.log(id, todo.id);
 
       if( todo.id == id) {
 
@@ -29,6 +31,16 @@ export class TodoList {
 
       }
     }
+  }
+
+  contadorPendientes ( ) {
+    let pendientes = 0;
+    for(const todo of this.todos) {
+      if (!todo.completado) {
+        pendientes++;
+      }
+    }
+    return pendientes;
   }
 
   eliminarCompletados(){
