@@ -6,21 +6,11 @@ import { crearTodoHtml } from './js/componentes';
 export const todoList = new TodoList();
 
 todoList.todos.forEach(todo => crearTodoHtml(todo) );
-// todoList.todos.forEach( crearTodoHtml ); //Es lo mismo que lo anterior
 
-// const tarea = new Todo('Aprender JavaScript');
-// todoList.nuevoTodo(tarea);
+// const newTodo = new Todo("Aprender JavaScript");
+// // todoList.nuevoTodo(newTodo);
 
-// tarea.completado = false;
+// newTodo.imprimirClase();
 
 
-// console.log( todoList );
-
-// crearTodoHtml(tarea);
-
-// localStorage.setItem('my-key', 'abc123');
-// sessionStorage.setItem('my-key', 'abc123');
-
-// setTimeout(() => {
-//   localStorage.removeItem('my-key');
-// }, 1500);
+console.log('todos', todoList.todos);
