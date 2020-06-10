@@ -1,4 +1,4 @@
-import {Todo} from '../classes/';
+import {Todo, TodoList} from '../classes/';
 import { todoList } from '..';
 
 //Referencias en el HTML
@@ -30,9 +30,37 @@ export const crearTodoHtml = (todo) => {
 };
 
 export const pendientesTodo = (contador) => {
-  const cuenta = contadorTodo.innerHTML = `<strong>${contador}</strong>  pendientes(s)`;
-  return cuenta;
+  // console.log(contador);
+  let cuenta = '';
+  let cuentaStatus;
+
+  for (let elemento of anchorFiltros){
+    // console.log(elemento);
+    if (elemento.classList.contains('selected')) {
+      cuenta = elemento.textContent;
+    }
+  }
+  
+  // console.log(cuenta);
+  switch (cuenta) {
+    case 'Todos':
+      cuentaStatus = contadorTodo.innerHTML = `<strong>${contador.todos}</strong>  Todo(s)`;
+      return cuentaStatus;
+      break;
+
+    case 'Pendientes':
+      cuentaStatus = contadorTodo.innerHTML = `<strong>${contador.pendientes}</strong>  Pendientes(s)`;
+      return cuentaStatus;
+      break;
+
+    case 'Completados':
+      cuentaStatus = contadorTodo.innerHTML = `<strong>${contador.completados}</strong>  Completado(s)`;
+      return cuentaStatus;
+      break;
+  
+  }
 };
+
 
 // Eventos
 txtInput.addEventListener('keyup', ( event ) =>{
@@ -67,7 +95,6 @@ divTodoList.addEventListener('click', (event) => {
   }
 
   pendientesTodo(todoList.contadorPendientes());
-  // console.log(todoList);
 
 });
 
@@ -83,11 +110,14 @@ btnBorrar.addEventListener('click', () => {
       divTodoList.removeChild(elemento);
     }
   }
+  pendientesTodo(todoList.contadorPendientes());
 });
 
 ulFiltros.addEventListener('click', ( event ) => {
   console.log(event.target.text); // Nos muestra el texto que contiene la etiqueta.
   const filtro = event.target.text;
+  const cuentaStatus = todoList.contadorPendientes();
+
 
   if (!filtro) {return;}
 
@@ -102,14 +132,20 @@ ulFiltros.addEventListener('click', ( event ) => {
     switch (filtro) {
       case 'Pendientes':
         if (completado) {
-          elemento.classList.add('hidden')
+          elemento.classList.add('hidden');
         }
+        pendientesTodo(todoList.contadorPendientes());
         break;
 
       case 'Completados':
         if (!completado) {
-          elemento.classList.add('hidden')
+          elemento.classList.add('hidden');
         }
+        pendientesTodo(todoList.contadorPendientes());
+        break;
+
+      default:
+        pendientesTodo(todoList.contadorPendientes());
         break;
     }
   }

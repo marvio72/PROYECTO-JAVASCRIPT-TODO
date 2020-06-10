@@ -8,10 +8,11 @@ export const todoList = new TodoList();
 todoList.todos.forEach(todo => crearTodoHtml(todo) );
 
 // const newTodo = new Todo("Aprender JavaScript");
-// // todoList.nuevoTodo(newTodo);
+// todoList.nuevoTodo(newTodo);
 
 // newTodo.imprimirClase();
 
-console.log('todos', todoList.todos);
+// console.log('todos', todoList.todos);
 
 pendientesTodo(todoList.contadorPendientes());
+// console.log(todoList.contadorPendientes());

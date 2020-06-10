@@ -5,7 +5,7 @@ export class TodoList {
   constructor(){
     // this.todos = [];
     this.cargarLocalStorage();
-    console.log(this.contadorPendientes());
+ 
   }
 
   nuevoTodo( todos ) {
@@ -21,7 +21,6 @@ export class TodoList {
   marcarCompletado ( id ){
     let pendientes = 0;
     for( const todo of this.todos) {
-      //  console.log(id, todo.id);
 
       if( todo.id == id) {
 
@@ -34,13 +33,22 @@ export class TodoList {
   }
 
   contadorPendientes ( ) {
-    let pendientes = 0;
+ 
+    let contador = {
+      "pendientes" : 0,
+      "completados": 0,
+      "todos"      : 0,
+    };
+
     for(const todo of this.todos) {
       if (!todo.completado) {
-        pendientes++;
+        contador.pendientes++;
+      } else {
+        contador.completados++;
       }
     }
-    return pendientes;
+    contador.todos = contador.pendientes + contador.completados;
+    return contador;
   }
 
   eliminarCompletados(){
@@ -54,9 +62,7 @@ export class TodoList {
 
   cargarLocalStorage(){
     
-    this.todos = (localStorage.getItem('todo')) 
-                  ? JSON.parse(localStorage.getItem('todo'))
-                  : [];
+    this.todos = (localStorage.getItem('todo')) ? JSON.parse(localStorage.getItem('todo')) : [];
 
     // this.todos = this.todos.map( obj => Todo.fromJason(obj)); 
     this.todos = this.todos.map( Todo.fromJason ); //Es lo mismo que el anterior                
